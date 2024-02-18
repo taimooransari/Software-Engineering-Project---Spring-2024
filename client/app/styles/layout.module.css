@@ -47,11 +47,12 @@
 }
 
 .link:hover {
-  text-decoration: underline;
+  color: lightgray;
+
 }
 
 .link {
-  color: #704cb6;
+  color: whitesmoke;
 }
 
 .link.active {
