@@ -35,7 +35,7 @@ const MenuItem = (props) => {
             Price: ${price}
           </span>
           <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold mt-6 py-2 px-4 rounded"
             onClick={() => handleAddToCart()}
           >
             Add to Cart
