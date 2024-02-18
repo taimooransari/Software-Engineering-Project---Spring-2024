@@ -15,6 +15,13 @@ const Index = () => {
         "https://s23209.pcdn.co/wp-content/uploads/2014/03/IMG_2626edit.jpg",
       quantity: 1,
     },
+    {
+      name: "Chicken Alfredo",
+        description: "Fettuccine pasta with creamy Alfredo sauce",
+        price: 18.99,
+        imageUrl:"https://www.allrecipes.com/thmb/9aWCdbfttLcsW2dFQWwVQBGJM3E=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/AR-236973-CreamyAlfredoSauce-0238-4x3-1-01e7091f47ae452d991abe32cbed5921.jpg",
+        quantity: 1,
+    }
     // Add more menu items as needed
 
   ];
@@ -51,7 +58,7 @@ const Index = () => {
     const [food, setFood] = React.useState(1);
 
   return (
-    <div className="container mt-5 mb-5">
+    <div className="container mt-5 mb-5" style={{padding:"50px"}}>
       <div className="flex">
         <div className="w-full md:w-3/4 lg:w-3/4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
