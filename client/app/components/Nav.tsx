@@ -87,6 +87,14 @@ export const Nav = () => {
                 Menu
               </Link>
             </li>
+            <li>
+              <Link
+                className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
+                href="/authenticate"
+              >
+                Login
+              </Link>
+            </li>
           </ul>
         </div>
       </div>
