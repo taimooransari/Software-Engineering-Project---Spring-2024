@@ -8,6 +8,30 @@ const Index = () => {
   const menuItems = [
     // Add your menu items here
     {
+      name: "BBQ Chicken",
+      description: "Grilled chicken marinated in BBQ sauce",
+      price: 18.99,
+      imageUrl:
+        "https://images.unsplash.com/photo-1522330397643-244786698879?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
+      quantity: 1,
+    },
+    {
+      name: "Chicken Alfredo",
+      description: "Fettuccine pasta with creamy Alfredo sauce",
+      price: 18.99,
+      imageUrl: "https://www.allrecipes.com/thmb/9aWCdbfttLcsW2dFQWwVQBGJM3E=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/AR-236973-CreamyAlfredoSauce-0238-4x3-1-01e7091f47ae452d991abe32cbed5921.jpg",
+      quantity: 1,
+
+    },
+    {
+      name: "BBQ Chicken",
+      description: "Grilled chicken marinated in BBQ sauce",
+      price: 18.99,
+      imageUrl:
+        "https://images.unsplash.com/photo-1522330397643-244786698879?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
+      quantity: 1,
+    },
+    {
       name: "Spaghetti",
       description: "Spaghetti with marinara sauce",
       price: 12.99,
@@ -17,11 +41,37 @@ const Index = () => {
     },
     {
       name: "Chicken Alfredo",
-        description: "Fettuccine pasta with creamy Alfredo sauce",
-        price: 18.99,
-        imageUrl:"https://www.allrecipes.com/thmb/9aWCdbfttLcsW2dFQWwVQBGJM3E=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/AR-236973-CreamyAlfredoSauce-0238-4x3-1-01e7091f47ae452d991abe32cbed5921.jpg",
-        quantity: 1,
-    }
+      description: "Fettuccine pasta with creamy Alfredo sauce",
+      price: 18.99,
+      imageUrl: "https://www.allrecipes.com/thmb/9aWCdbfttLcsW2dFQWwVQBGJM3E=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/AR-236973-CreamyAlfredoSauce-0238-4x3-1-01e7091f47ae452d991abe32cbed5921.jpg",
+      quantity: 1,
+
+    },
+    {
+      name: "BBQ Chicken",
+      description: "Grilled chicken marinated in BBQ sauce",
+      price: 18.99,
+      imageUrl:
+        "https://images.unsplash.com/photo-1522330397643-244786698879?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
+      quantity: 1,
+    }, {
+      name: "BBQ Chicken",
+      description: "Grilled chicken marinated in BBQ sauce",
+      price: 18.99,
+      imageUrl:
+        "https://images.unsplash.com/photo-1522330397643-244786698879?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
+      quantity: 1,
+    },
+    {
+      name: "Chicken Alfredo",
+      description: "Fettuccine pasta with creamy Alfredo sauce",
+      price: 18.99,
+      imageUrl: "https://www.allrecipes.com/thmb/9aWCdbfttLcsW2dFQWwVQBGJM3E=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/AR-236973-CreamyAlfredoSauce-0238-4x3-1-01e7091f47ae452d991abe32cbed5921.jpg",
+      quantity: 1,
+
+    },
+
+
     // Add more menu items as needed
 
   ];
@@ -55,13 +105,13 @@ const Index = () => {
     // Add more barbecue menu items as needed
   ];
 
-    const [food, setFood] = React.useState(1);
+  const [food, setFood] = React.useState(1);
 
   return (
-    <div className="container mt-5 mb-5" style={{padding:"50px"}}>
-      <div className="flex">
-        <div className="w-full md:w-3/4 lg:w-3/4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div className="container" style={{ paddingTop: "70px", margin: "auto" }}>
+      <div className="flex justify-center">
+        <div className="w-full">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mine">
             {food === 1 &&
               menuItems.map((item, index) => (
                 <MenuItem key={index} item={item} />
@@ -72,11 +122,36 @@ const Index = () => {
               ))}
           </div>
         </div>
-        <div className="w-full md:w-1/4 lg:w-1/4">
-          <ShoppingCart />
-        </div>
       </div>
+      <style jsx>{`
+
+  .mine{
+    border: 1px solid black;
+    width: 100%;
+
+  }
+    .grid {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .grid > * {
+      width: calc(100% / 3 - 1rem); /* Equal width for lg screens */
+      max-width: 24%; /* Max width */
+    }
+    @media (min-width: 768px) { /* Medium screens */
+      .grid > * {
+        width: calc(100% / 2 - 1rem); /* Equal width for md screens */
+      }
+    }
+    @media (min-width: 1024px) { /* Large screens */
+      .grid > * {
+        width: calc(100% / 3 - 1rem); /* Equal width for lg screens */
+      }
+    }
+  `}</style>
     </div>
+
+
   );
 };
 

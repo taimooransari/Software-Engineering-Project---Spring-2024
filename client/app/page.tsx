@@ -1,8 +1,8 @@
 /* Components */
-import { Counter } from "./components/Counter/Counter";
+import About  from "./components/About.tsx";
 
 export default function IndexPage() {
-  return <Counter />;
+  return <About />;
 }
 
 export const metadata = {
