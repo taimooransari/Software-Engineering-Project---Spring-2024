@@ -2,12 +2,27 @@
 import React from "react";
 import MenuItem from "../components/MenuItem";
 import ShoppingCart from "../components/ShoppingCart";
+import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
 
 
 const Index = () => {
+
+  const cartItems = useSelector(state => state.cart.items);
+  const [isAlert, setIsAlert] = React.useState(false);
+
+  const showalert = () => {
+    setIsAlert(true);
+    setTimeout(() => {
+      setIsAlert(false);
+    }, 3000);
+  }
+
+
   const menuItems = [
     // Add your menu items here
     {
+      id: 1,
       name: "BBQ Chicken",
       description: "Grilled chicken marinated in BBQ sauce",
       price: 18.99,
@@ -16,6 +31,7 @@ const Index = () => {
       quantity: 1,
     },
     {
+      id: 2,
       name: "Chicken Alfredo",
       description: "Fettuccine pasta with creamy Alfredo sauce",
       price: 18.99,
@@ -24,6 +40,7 @@ const Index = () => {
 
     },
     {
+      id: 3,
       name: "BBQ Chicken",
       description: "Grilled chicken marinated in BBQ sauce",
       price: 18.99,
@@ -32,6 +49,7 @@ const Index = () => {
       quantity: 1,
     },
     {
+      id: 4,
       name: "Spaghetti",
       description: "Spaghetti with marinara sauce",
       price: 12.99,
@@ -40,6 +58,7 @@ const Index = () => {
       quantity: 1,
     },
     {
+      id: 5,
       name: "Chicken Alfredo",
       description: "Fettuccine pasta with creamy Alfredo sauce",
       price: 18.99,
@@ -48,6 +67,7 @@ const Index = () => {
 
     },
     {
+      id: 6,
       name: "BBQ Chicken",
       description: "Grilled chicken marinated in BBQ sauce",
       price: 18.99,
@@ -55,6 +75,7 @@ const Index = () => {
         "https://images.unsplash.com/photo-1522330397643-244786698879?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
       quantity: 1,
     }, {
+      id: 7,
       name: "BBQ Chicken",
       description: "Grilled chicken marinated in BBQ sauce",
       price: 18.99,
@@ -63,6 +84,7 @@ const Index = () => {
       quantity: 1,
     },
     {
+      id : 8,
       name: "Chicken Alfredo",
       description: "Fettuccine pasta with creamy Alfredo sauce",
       price: 18.99,
@@ -79,6 +101,7 @@ const Index = () => {
   const barbecueMenuItems = [
     // Add your barbecue menu items here
     {
+      id: 9,
       name: "BBQ Chicken",
       description: "Grilled chicken marinated in BBQ sauce",
       price: 18.99,
@@ -87,6 +110,7 @@ const Index = () => {
       quantity: 1,
     },
     {
+      id: 10,
       name: "BBQ Shrimp Skewers",
       description: "Grilled shrimp glazed with smoky barbecue sauce",
       price: 22.99,
@@ -95,6 +119,7 @@ const Index = () => {
       quantity: 1,
     },
     {
+      id: 11,
       name: "BBQ Veggie Platter",
       description: "Grilled vegetables marinated in barbecue seasoning",
       price: 13.99,
@@ -108,17 +133,21 @@ const Index = () => {
   const [food, setFood] = React.useState(1);
 
   return (
+    <>
+    {isAlert && <div class="fixed bottom-5 right-5 bg-green-500 text-white px-4 py-3 rounded-full shadow-lg hidden opacity-0 transition-opacity duration-300" id="cartAlert">
+  Item added to cart!
+   </div>}
     <div className="container" style={{ paddingTop: "70px", margin: "auto" }}>
       <div className="flex justify-center">
         <div className="w-full">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mine">
             {food === 1 &&
               menuItems.map((item, index) => (
-                <MenuItem key={index} item={item} />
+                <MenuItem key={index} item={item} showalert={showalert} />
               ))}
             {food === 2 &&
               barbecueMenuItems.map((item, index) => (
-                <MenuItem key={index} item={item} />
+                <MenuItem key={index} item={item}  showalert={showalert}/>
               ))}
           </div>
         </div>
@@ -150,7 +179,7 @@ const Index = () => {
     }
   `}</style>
     </div>
-
+  </>
 
   );
 };

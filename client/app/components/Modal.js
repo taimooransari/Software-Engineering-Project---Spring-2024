@@ -1,38 +1,41 @@
 import React, { useState } from 'react';
 import ShoppingCart from './ShoppingCart';
+import { useSelector } from 'react-redux';
 
 function Modal() {
     const [showModal, setShowModal] = useState(false);
+
+    const cartItems = useSelector((state) => state.cart.items);
 
     const toggleModal = () => {
         setShowModal(!showModal);
     };
 
-    const cartItems = [
+    // const cartItems = [
       
-        {
-            name: "Item 2",
-            description: "Another thing",
-            price: 150,
-            quantity: 1,
-        }, {
-            name: "Item 1",
-            description: "A nice thing",
-            price: 100,
-            quantity: 2,
-        },
-        {
-            name: "Item 2",
-            description: "Another thing",
-            price: 150,
-            quantity: 1,
-        },   {
-            name: "Item 2",
-            description: "Another thing",
-            price: 150,
-            quantity: 1,
-        }
-    ];
+    //     {
+    //         name: "Item 2",
+    //         description: "Another thing",
+    //         price: 150,
+    //         quantity: 1,
+    //     }, {
+    //         name: "Item 1",
+    //         description: "A nice thing",
+    //         price: 100,
+    //         quantity: 2,
+    //     },
+    //     {
+    //         name: "Item 2",
+    //         description: "Another thing",
+    //         price: 150,
+    //         quantity: 1,
+    //     },   {
+    //         name: "Item 2",
+    //         description: "Another thing",
+    //         price: 150,
+    //         quantity: 1,
+    //     }
+    // ];
 
     const total = cartItems.reduce(
         (acc, item) => acc + item.price * item.quantity,

@@ -1,21 +1,28 @@
 import React from "react";
-// import { useDispatch, useSelector } from 'react-redux'
-// import { actionCreators } from '../state';
+import {
+  cartSlice,
+  useSelector,
+  useDispatch,
+  selectCount,
+  incrementAsync,
+  incrementIfOddAsync,
+} from "@/lib/redux";
 
 const MenuItem = (props) => {
-  const { item } = props;
+  const { item, showalert } = props;
 
   const { name, description, price, imageUrl } = item;
-  //   const dispatch = useDispatch()
+  const dispatch = useDispatch()
   //   const existingItem = useSelector(state => state.items.find(i => i.name === item.name));
   const handleAddToCart = () => {
-    // if(existingItem){
-    //     dispatch(actionCreators.updateitem(existingItem));
-
-    // }else{
-    //   dispatch(actionCreators.additem(item));
-    // }
+    dispatch(cartSlice.actions.addItem({
+      id: item.id,
+      name: item.name,
+      price: item.price, 
+      quantity: 1 
+  }));
     console.log("Add to cart clicked");
+    showalert();
   };
 
   return (
@@ -36,7 +43,7 @@ const MenuItem = (props) => {
           </span>
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold mt-6 py-2 px-4 rounded"
-            onClick={() => handleAddToCart()}
+            onClick={handleAddToCart}
           >
             Add to Cart
           </button>

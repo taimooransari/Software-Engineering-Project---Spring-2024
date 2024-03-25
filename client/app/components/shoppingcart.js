@@ -1,22 +1,28 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addItem, removeItem, updateQuantity } from '../../lib/redux/slices/cartSlice';
+
 
 const ShoppingCart = () => {
 
+  const cartItems = useSelector((state) => state.cart.items);
 
-  const cartItems = [
-    {
-      name: "Item 1",
-      description: "A nice thing",
-      price: 100,
-      quantity: 2,
-    },
-    {
-      name: "Item 2",
-      description: "Another thing",
-      price: 150,
-      quantity: 1,
-    },
-  ];
+
+
+  // const cartItems = [
+  //   {
+  //     name: "Item 1",
+  //     description: "A nice thing",
+  //     price: 100,
+  //     quantity: 2,
+  //   },
+  //   {
+  //     name: "Item 2",
+  //     description: "Another thing",
+  //     price: 150,
+  //     quantity: 1,
+  //   },
+  // ];
 
   const total = cartItems.reduce(
     (acc, item) => acc + item.price * item.quantity,
@@ -30,7 +36,8 @@ const ShoppingCart = () => {
 
   const handleCheckout = () => {
     // Implement checkout logic here
-         console.log("Checkout clicked");
+    console.log("Checkout clicked");
+    console.log(cartItems);
   };
 
   return (
