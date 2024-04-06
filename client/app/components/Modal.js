@@ -11,31 +11,6 @@ function Modal() {
         setShowModal(!showModal);
     };
 
-    // const cartItems = [
-      
-    //     {
-    //         name: "Item 2",
-    //         description: "Another thing",
-    //         price: 150,
-    //         quantity: 1,
-    //     }, {
-    //         name: "Item 1",
-    //         description: "A nice thing",
-    //         price: 100,
-    //         quantity: 2,
-    //     },
-    //     {
-    //         name: "Item 2",
-    //         description: "Another thing",
-    //         price: 150,
-    //         quantity: 1,
-    //     },   {
-    //         name: "Item 2",
-    //         description: "Another thing",
-    //         price: 150,
-    //         quantity: 1,
-    //     }
-    // ];
 
     const total = cartItems.reduce(
         (acc, item) => acc + item.price * item.quantity,

@@ -1,3 +1,4 @@
+
 import React from "react";
 import {
   cartSlice,
@@ -22,6 +23,7 @@ const MenuItem = (props) => {
       quantity: 1 
   }));
     console.log("Add to cart clicked");
+    alert("Item added to cart");
     showalert();
   };
 
