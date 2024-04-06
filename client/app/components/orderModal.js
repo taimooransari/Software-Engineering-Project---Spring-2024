@@ -63,19 +63,8 @@ const OrderModal = ({ isOpen, onClose, order }) => {
 
     if (!isOpen || !order) return null;
 
-    // // Calculate total bill
-    // const totalBill = Object.keys(order.items).reduce(
-    //     (total, itemId) => {
-    //         const item = items.find(item => item.id === parseInt(itemId));
-    //         if (item) {
-    //             return total + item.price * order.items[itemId];
-    //         }
-    //         return total + order.deliveryFee;
-    //     },
-    //     0
-    // );
-
     return (
+
         <dialog className="fixed left-0 top-0 w-full h-full bg-black bg-opacity-50 z-50 overflow-auto backdrop-blur flex justify-center items-center">
             <div className="m-auto p-8 w-2/4">
                 <div className="flex flex-col items-center">
@@ -100,17 +89,35 @@ const OrderModal = ({ isOpen, onClose, order }) => {
                         </svg>
                     </button>
 
-                    <div className="bg-white w-full shadow-md rounded-lg overflow-hidden">
+                    <div className="bg-white w-full shadow-md rounded-lg overflow-hidden m-5 p-5">
                         <h2 className="text-2xl font-semibold mb-4">Order Details</h2>
-                        <p>Order ID: {order.id}</p>
-                        <p>Order Time: {order.orderTime}</p>
-                        <p>Contact: {order.customerContact}</p>
-                        <p>Note: {order.note}</p>
-                        <p>Delivery Address: {order.addressToDeliver.textAddress}</p>
-                        <p>Order Status: {order.orderStatus}</p>
+                        <div className="flex justify-between">
+                            <p className="text-left font-bold">Order ID:</p>
+                            <p className="text-right">{order.id}</p>
+                        </div>
+                        <div className="flex justify-between">
+                            <p className="text-left font-bold">Order Time:</p>
+                            <p className="text-right">{order.orderTime}</p>
+                        </div>
+                        <div className="flex justify-between">
+                            <p className="text-left font-bold">Contact:</p>
+                            <p className="text-right">{order.customerContact}</p>
+                        </div>
+                        <div className="flex justify-between">
+                            <p className="text-left font-bold">Note:</p>
+                            <p className="text-right">{order.note}</p>
+                        </div>
+                        <div className="flex justify-between">
+                            <p className="text-left font-bold">Delivery Address:</p>
+                            <p className="text-right">{order.addressToDeliver.textAddress}</p>
+                        </div>
+                        <div className="flex justify-between">
+                            <p className="text-left font-bold">Order Status:</p>
+                            <p className="text-right">{order.orderStatus}</p>
+                        </div>
                     </div>
 
-                    <div className="bg-white w-full shadow-md rounded-lg overflow-hidden mt-4">
+                    <div className="bg-white w-full shadow-md rounded-lg overflow-hidden mt-4 p-5">
                         <h2 className="text-2xl font-semibold mb-4">Items in Order</h2>
                         <div className="flex bg-gray-200 p-2">
                             <p className="flex-1 text-center">Item</p>
@@ -134,7 +141,7 @@ const OrderModal = ({ isOpen, onClose, order }) => {
                         })}
                     </div>
 
-                    <div className="bg-white w-full shadow-md rounded-lg overflow-hidden mt-4">
+                    <div className="bg-white w-full shadow-md rounded-lg overflow-hidden mt-4 p-5">
                         <div className="flex bg-gray-200 p-2">
                             <p className="flex-4 text-center mr-5">Delivery Fee :</p>
                             <p className="flex-4">${order.deliveryFee.toFixed(2)}</p>
@@ -147,6 +154,8 @@ const OrderModal = ({ isOpen, onClose, order }) => {
                 </div>
             </div>
         </dialog>
+
+
     );
 };
 
