@@ -48,7 +48,6 @@ const ManageItems = () => {
     const handleAddItem = (newItem) => {
         // Generate a unique ID for the new item
         const newItemWithId = { ...newItem, id: Date.now() };
-        alert(JSON.stringify(newItemWithId));
         // Add the new item to the items array
         const updatedItems = [...items, newItemWithId];
         updateItems(updatedItems);

@@ -1,9 +1,9 @@
 'use client';
 import React, { useState } from "react";
 import MenuItem from "../components/MenuItem";
-import ShoppingCart from "../components/ShoppingCart";
-import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+// import ShoppingCart from "../components/ShoppingCart";
+import {  useSelector } from "react-redux";
+
 
 
 const Index = () => {
@@ -148,7 +148,7 @@ const Index = () => {
         <style jsx>{`
 
   .mine{
-    border: 1px solid black;
+    // border: 1px solid black;
     width: 100%;
     justify-content: center;
 
