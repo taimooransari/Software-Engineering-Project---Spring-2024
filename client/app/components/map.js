@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Loader } from "@googlemaps/js-api-loader";
 
-const MapComponent = ({address}) => {
+const MapComponent = () => {
     useEffect(() => {
         const loader = new Loader({
             apiKey: "AIzaSyBCicmL-dLEkYepBcurwdB1AWuiJs0RegM",
@@ -12,7 +12,7 @@ const MapComponent = ({address}) => {
             const { Map } = await google.maps.importLibrary("maps");
 
             const map = new Map(document.getElementById("map"), {
-                center: address,
+                center: {lat: 37.7749, lng: -122.4194},
                 zoom: 15,
             });
         });
