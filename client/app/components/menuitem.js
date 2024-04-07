@@ -13,7 +13,10 @@ const MenuItem = (props) => {
   const { item, showalert } = props;
 
   const { name, description, price, imageUrl } = item;
+
+  
   const dispatch = useDispatch()
+
   //   const existingItem = useSelector(state => state.items.find(i => i.name === item.name));
   const handleAddToCart = () => {
     dispatch(cartSlice.actions.addItem({
