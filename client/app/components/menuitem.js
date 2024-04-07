@@ -18,8 +18,8 @@ const MenuItem = (props) => {
     dispatch(cartSlice.actions.addItem({
       id: item.id,
       name: item.name,
-      price: item.price, 
-      quantity: 1 
+      price: item.price,
+      quantity: 1,
   }));
     console.log("Add to cart clicked");
     showalert();

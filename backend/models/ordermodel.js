@@ -6,9 +6,10 @@ const orderSchema = new mongoose.Schema({
     address: { type: String, required: true },
     phone: { type: String }, 
     orderItems: [{
-        itemId: { type: mongoose.Schema.Types.ObjectId, ref: 'Inventory', required: true },
+        id: { type: String, required: true},
         quantity: { type: Number, required: true },
-        itemName: { type: String, required: true } // Store name at the time of order
+        name: { type: String, required: true }, // Store name at the time of order
+        quantity: { type: Number, required: true },
     }],
     orderStatus: { type: String, enum: ['pending', 'confirmed', 'preparing', 'out for delivery', 'delivered', 'cancelled'], default: 'pending' },
     total: { type: Number, required: true },

@@ -1,41 +1,22 @@
 import React, { useState } from 'react';
-import ShoppingCart from './ShoppingCart';
 import { useSelector } from 'react-redux';
+import { useRouter } from 'next/navigation';
 
 function Modal() {
     const [showModal, setShowModal] = useState(false);
 
     const cartItems = useSelector((state) => state.cart.items);
 
+    const router = useRouter();
+
     const toggleModal = () => {
         setShowModal(!showModal);
     };
 
-    // const cartItems = [
-      
-    //     {
-    //         name: "Item 2",
-    //         description: "Another thing",
-    //         price: 150,
-    //         quantity: 1,
-    //     }, {
-    //         name: "Item 1",
-    //         description: "A nice thing",
-    //         price: 100,
-    //         quantity: 2,
-    //     },
-    //     {
-    //         name: "Item 2",
-    //         description: "Another thing",
-    //         price: 150,
-    //         quantity: 1,
-    //     },   {
-    //         name: "Item 2",
-    //         description: "Another thing",
-    //         price: 150,
-    //         quantity: 1,
-    //     }
-    // ];
+    const handleCheckout = () => {
+        router.push('/checkout');
+    };
+
 
     const total = cartItems.reduce(
         (acc, item) => acc + item.price * item.quantity,
@@ -82,6 +63,7 @@ function Modal() {
 
                                 <button
                                     className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-2 "
+                                    onClick={handleCheckout}
 
                                 >
                                     Checkout

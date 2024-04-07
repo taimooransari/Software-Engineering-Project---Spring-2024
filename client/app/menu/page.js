@@ -1,7 +1,6 @@
 'use client';
 import React from "react";
 import MenuItem from "../components/MenuItem";
-import ShoppingCart from "../components/ShoppingCart";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 
@@ -22,7 +21,7 @@ const Index = () => {
   const menuItems = [
     // Add your menu items here
     {
-      id: 1,
+      id: "1",
       name: "BBQ Chicken",
       description: "Grilled chicken marinated in BBQ sauce",
       price: 18.99,
@@ -31,7 +30,7 @@ const Index = () => {
       quantity: 1,
     },
     {
-      id: 2,
+      id: "2",
       name: "Chicken Alfredo",
       description: "Fettuccine pasta with creamy Alfredo sauce",
       price: 18.99,
@@ -40,7 +39,7 @@ const Index = () => {
 
     },
     {
-      id: 3,
+      id: "3",
       name: "BBQ Chicken",
       description: "Grilled chicken marinated in BBQ sauce",
       price: 18.99,
@@ -49,7 +48,7 @@ const Index = () => {
       quantity: 1,
     },
     {
-      id: 4,
+      id: "4",
       name: "Spaghetti",
       description: "Spaghetti with marinara sauce",
       price: 12.99,
@@ -58,7 +57,7 @@ const Index = () => {
       quantity: 1,
     },
     {
-      id: 5,
+      id: "5",
       name: "Chicken Alfredo",
       description: "Fettuccine pasta with creamy Alfredo sauce",
       price: 18.99,
@@ -67,7 +66,7 @@ const Index = () => {
 
     },
     {
-      id: 6,
+      id: "6",
       name: "BBQ Chicken",
       description: "Grilled chicken marinated in BBQ sauce",
       price: 18.99,
@@ -75,7 +74,7 @@ const Index = () => {
         "https://images.unsplash.com/photo-1522330397643-244786698879?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
       quantity: 1,
     }, {
-      id: 7,
+      id: "7",
       name: "BBQ Chicken",
       description: "Grilled chicken marinated in BBQ sauce",
       price: 18.99,
@@ -84,7 +83,7 @@ const Index = () => {
       quantity: 1,
     },
     {
-      id : 8,
+      id : "8",
       name: "Chicken Alfredo",
       description: "Fettuccine pasta with creamy Alfredo sauce",
       price: 18.99,
@@ -101,7 +100,7 @@ const Index = () => {
   const barbecueMenuItems = [
     // Add your barbecue menu items here
     {
-      id: 9,
+      id: "9",
       name: "BBQ Chicken",
       description: "Grilled chicken marinated in BBQ sauce",
       price: 18.99,
@@ -110,7 +109,7 @@ const Index = () => {
       quantity: 1,
     },
     {
-      id: 10,
+      id: "10",
       name: "BBQ Shrimp Skewers",
       description: "Grilled shrimp glazed with smoky barbecue sauce",
       price: 22.99,
@@ -119,7 +118,7 @@ const Index = () => {
       quantity: 1,
     },
     {
-      id: 11,
+      id: "11",
       name: "BBQ Veggie Platter",
       description: "Grilled vegetables marinated in barbecue seasoning",
       price: 13.99,
