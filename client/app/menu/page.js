@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import MenuItem from "../components/MenuItem";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
 
 
 const Index = () => {
