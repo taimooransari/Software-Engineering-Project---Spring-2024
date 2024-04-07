@@ -53,6 +53,6 @@ export const orderSlice = createSlice({
     },
 });
 
-export const { addOrder, updateOrder, addOrderBatch, setOrder } = orderSlice.actions;
+export const { addOrder, updateOrder, addOrderBatch, setOrders } = orderSlice.actions;
 
 export default orderSlice.reducer;
