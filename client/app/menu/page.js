@@ -1,5 +1,5 @@
 'use client';
-import React from "react";
+import React, { useState } from "react";
 import MenuItem from "../components/MenuItem";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
@@ -8,7 +8,7 @@ import { useState } from "react";
 const Index = () => {
 
   const cartItems = useSelector(state => state.cart.items);
-  const [isAlert, setIsAlert] = React.useState(false);
+  const [isAlert, setIsAlert] = useState(false);
 
   const showalert = () => {
     setIsAlert(true);
@@ -16,9 +16,7 @@ const Index = () => {
       setIsAlert(false);
     }, 3000);
   }
-
-
-  const menuItems = [
+  const [menuItems, updateMenuItems] = useState([
     // Add your menu items here
     {
       id: "1",
@@ -90,12 +88,9 @@ const Index = () => {
       imageUrl: "https://www.allrecipes.com/thmb/9aWCdbfttLcsW2dFQWwVQBGJM3E=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/AR-236973-CreamyAlfredoSauce-0238-4x3-1-01e7091f47ae452d991abe32cbed5921.jpg",
       quantity: 1,
 
-    },
+    }]);
 
 
-    // Add more menu items as needed
-
-  ];
 
   const barbecueMenuItems = [
     // Add your barbecue menu items here
@@ -133,29 +128,28 @@ const Index = () => {
 
   return (
     <>
-    {isAlert && <div class="fixed bottom-5 right-5 bg-green-500 text-white px-4 py-3 rounded-full shadow-lg hidden opacity-0 transition-opacity duration-300" id="cartAlert">
-  Item added to cart!
-   </div>}
-    <div className="container" style={{ paddingTop: "70px", margin: "auto" }}>
-      <div className="flex justify-center">
-        <div className="w-full">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mine">
-            {food === 1 &&
-              menuItems.map((item, index) => (
-                <MenuItem key={index} item={item} showalert={showalert} />
-              ))}
-            {food === 2 &&
-              barbecueMenuItems.map((item, index) => (
-                <MenuItem key={index} item={item}  showalert={showalert}/>
-              ))}
+      {isAlert && <div class="fixed bottom-5 right-5 bg-green-500 text-white px-4 py-3 rounded-full shadow-lg hidden opacity-0 transition-opacity duration-300" id="cartAlert">Item added to cart!</div>}
+      <div className="container" style={{ paddingTop: "70px", margin: "auto" }}>
+        <div className="flex justify-center">
+          <div className="w-full">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mine">
+              {food === 1 &&
+                menuItems.map((item, index) => (
+                  <MenuItem key={index} item={item} showalert={showalert} />
+                ))}
+              {food === 2 &&
+                barbecueMenuItems.map((item, index) => (
+                  <MenuItem key={index} item={item} showalert={showalert} />
+                ))}
+            </div>
           </div>
         </div>
-      </div>
-      <style jsx>{`
+        <style jsx>{`
 
   .mine{
-    border: 1px solid black;
+    // border: 1px solid black;
     width: 100%;
+    justify-content: center;
 
   }
     .grid {
@@ -177,8 +171,8 @@ const Index = () => {
       }
     }
   `}</style>
-    </div>
-  </>
+      </div>
+    </>
 
   );
 };
