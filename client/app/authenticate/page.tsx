@@ -1,23 +1,23 @@
 'use client';
-import React, {useState} from "react";
-
+import React, {useState,useEffect, use} from "react";
+import { authSlice, useDispatch, useSelector } from "@/lib/redux";
 import Login from "../components/Login";
-import Profile from "../components/Profile";
+import Profile from "../components/Profile.js";
+import type { ReduxState } from "@/lib/redux";
 
 
 const Index = () => {
-   const [isLogged, setIsLogged] = useState(false);
+   const islogged = useSelector((state: ReduxState) => state.auth.isLoggedIn);
 
-const toggleState = () => {setIsLogged(!isLogged)};
+   
 
 
   return (
     <div className="container mt-5 mb-5 w-full m-auto w-full" style={{padding:"50px", display: "flex", flexFlow:"column",justifyContent:"space-evenly", alignItems: "center"}}>
 
-      <button onClick={toggleState}>Toggle</button>
       <div className="flex items-evenly w-full" >
         
-        {isLogged ? <Profile/> :<Login />}
+        {islogged ? <Profile/> :<Login />}
         
         
       

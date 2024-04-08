@@ -62,12 +62,16 @@ router.post("/login", [
     }
     const {Email, Password} = req.body;
     try{
-        let User = await userModel.findOne({Email});
+        console.log(req.body);
+        console.log(Email);
+        let User = await userModel.findOne({email: req.body.Email});
         if(!User){
+            console.log("Email not found")
             return res.status(400).json({ success: false, errors: [{msg: "Invalid Credentials"}]});
         }
-        const isMatch = await bcrypt.compare(Password, User.Password);
+        const isMatch = await bcrypt.compare(Password, User.password);
         if(!isMatch){
+            console.log("Password not found")
             return res.status(400).json({ success: false, errors: [{msg: "Invalid Credentials"}]});
         }
         const payload = {
@@ -88,7 +92,7 @@ router.post("/login", [
 router.post("/getuser", fetchUser, async (req, res) => {
     try {
         const userId = req.user.id;
-        const User = await userModel.findById(userId).select("-Password");
+        const User = await userModel.findById(userId).select("-password");
         res.send(User);
     } catch (error) {
         console.error(error.message);

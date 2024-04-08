@@ -1,11 +1,47 @@
-import React, { useState } from 'react';
+"use client";
+import React, { useState, useEffect} from 'react';
 
-const Profile: React.FC = () => {
+const Profile = () => {
     const [isEditing, setIsEditing] = useState(false);
     const [name, setName] = useState('Taimoor Ansari');
     const [email, setEmail] = useState('taimoor.ansari432@gmail.com');
     const [contactNumber, setContactNumber] = useState('033633468547');
     const [address, setAddress] = useState('R13, Block 13, Gulshan-e-Iqbal, Karachi, Pakistan');
+
+    useEffect(() => {
+        // Fetch the user profile data when the component mounts
+        getprofile();
+    }
+    , []);
+
+    const host = "http://localhost:3000";
+
+    const getprofile = async () => {
+        try {
+            console.log("Fetching user profile");
+            const mytoken = localStorage.getItem('token');
+            const response = await fetch(`${host}/api/customers/getuser`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'auth-token': mytoken,
+                },
+            });
+            if (response.ok) {
+                const user = await response.json();
+                // Update the state with the fetched user data
+                setName(user.name);
+                setEmail(user.email);
+            } else {
+                console.error('Failed to fetch user profile');
+            }
+        } catch (error) {
+            console.error('Failed to fetch user profile', error);
+        }
+    };
+    
+     
+
 
     const handleSave = () => {
         // Save the updated profile information
