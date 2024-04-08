@@ -1,9 +1,35 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+
+import {
+    orderSlice,
+    useSelector,
+    useDispatch,
+    selectCount,
+    incrementAsync,
+    incrementIfOddAsync,
+} from "@/lib/redux";
+
+
+
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import OrderModal from '../../components/orderModal';
 
 const ManageOrders = () => {
-    const [orders, setOrders] = useState([
+    const pathname = usePathname();
+    const dispatch = useDispatch();
+
+
+    const [orders, setOrders] = useState([]);
+    const orderRedux = useSelector(state => state.orders.orders);
+
+
+    useEffect(() => {
+        setOrders(orderRedux);
+    }, [orderRedux]);
+
+    const temp = [
         {
             id: 1,
             orderTime: "2024-04-07T10:30:00",
@@ -53,7 +79,15 @@ const ManageOrders = () => {
             deliveryFee: 5,
             totalBill: 35.98
         },
-    ]);
+    ];
+
+
+    const tempFunc = () => {
+
+        dispatch(orderSlice.actions.setOrders(temp));
+        // alert("Items set")
+    }
+
 
     const [statusFilters, setStatusFilters] = useState({
         Open: true,
@@ -84,6 +118,16 @@ const ManageOrders = () => {
     return (
         <div className="max-w-4xl mx-auto px-4 py-8">
             <h2 className="text-3xl font-semibold mt-2 mb-6">Manage Orders</h2>
+
+            <div className="flex flex-col space-y-4 mb-5">
+                <Link href="/admin/items" passHref>
+                    <p className={`px-4 py-2 rounded-md focus:outline-none transition-colors duration-300 ease-in-out text-center ${pathname === '/admin/items' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700 hover:bg-blue-500 hover:text-white'}`}>
+                        Manage Items
+                    </p>
+                </Link>
+                <button onClick={tempFunc} className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition duration-300">Add Item</button>
+            </div>
+
             <div className="flex mb-4">
                 {Object.keys(statusFilters).map((status) => (
                     <div key={status} className="mr-4">
