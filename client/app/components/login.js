@@ -16,6 +16,8 @@ export default function Login() {
 
   const host = "http://localhost:3000";
 
+  
+
   const register = async () => {
     try {
       const response = await fetch(`${host}/api/customers/register`, {
@@ -59,10 +61,11 @@ export default function Login() {
       });
 
       if (response.ok) {
-        const { token } = await response.json();
+        const { authtoken } = await response.json();
+        console.log("This is the token before storing", authtoken)
 
         // Store the web token in local storage
-        localStorage.setItem("token", token);
+        localStorage.setItem("token", authtoken);
         alert("Login successful");
         dispatch(authSlice.actions.login());
       } else {

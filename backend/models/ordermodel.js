@@ -1,7 +1,7 @@
 import { Schema, model, mongoose } from 'mongoose';
 
 const orderSchema = new mongoose.Schema({
-    customerId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }, // Can be null for guest orders
+    customerId: { type: String }, // Can be null for guest orders
     email: { type: String }, // Guest user email capture
     address: { type: String, required: true },
     phone: { type: String }, 

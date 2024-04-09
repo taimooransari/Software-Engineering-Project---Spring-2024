@@ -59,7 +59,9 @@ router.get("/getorders", async (req, res) => {
 });
 
 router.get("/getorder/:id", async (req, res) => {
+  console.log(req.params.id);
   try {
+
     const order = await orderModel.findById(req.params.id);
     res.json(order);
   } catch (err) {
@@ -111,6 +113,19 @@ router.put("/updateorder/:id", fetchUser, async (req, res) => {
     );
 
     res.json(order);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server error");
+  }
+});
+
+router.get("/getcustomerorders/:customerId", async (req, res) => {
+  try {
+    const customerId = req.params.customerId;
+    console.log("This is the customer id", customerId);
+    const orders = await orderModel.find({ customerId: customerId});
+    res.json(orders);
+    console.log("These are the orders", orders);
   } catch (err) {
     console.error(err);
     res.status(500).send("Server error");

@@ -19,6 +19,7 @@ const CheckoutPage = () => {
   });
 
   const cartItems = useSelector((state) => state.cart.items);
+  const { userinfo } = useSelector((state) => state.auth);
 
   const [confirmed, setConfirmed] = useState(false);
 
@@ -45,7 +46,7 @@ const CheckoutPage = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          customerId: null,
+          customerId: userinfo.id,
           address: formData.address,
           items: cartItems,
           email: formData.email,

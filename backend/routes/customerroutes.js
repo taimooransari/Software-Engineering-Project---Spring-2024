@@ -38,7 +38,7 @@ router.post("/register", [
         });
         const payload = {
             User: {
-                id: User.id
+                id: User._id
             }
         };
         const authtoken = jwt.sign(payload, JWT_SECRET, {expiresIn: 360000});
@@ -80,7 +80,7 @@ router.post("/login", [
             }
         };
         const authtoken = jwt.sign(payload, JWT_SECRET, {expiresIn: 360000});
-        console.log(authtoken);
+        console.log("This is the token before sending it", authtoken)
         res.json({success: true, authtoken});
     }
     catch(err){
@@ -90,13 +90,38 @@ router.post("/login", [
 });
 
 router.post("/getuser", fetchUser, async (req, res) => {
+    console.log("I am in this endpoint")
     try {
+        console.log("I am in getuser")
         const userId = req.user.id;
         const User = await userModel.findById(userId).select("-password");
         res.send(User);
     } catch (error) {
+        console.log("Error in catch")
         console.error(error.message);
         res.status(500).send("Internal Server Error");
+    }
+});
+
+//update user by id
+router.put("/updateuser/:id", async (req, res) => {
+    const {name, email, contactNumber, address} = req.body;
+    try{
+        const updates = {};
+        if(name) updates.name = name;
+        if(email) updates.email = email;
+        if(contactNumber) updates.contactNumber = contactNumber;
+        if(address) updates.address = address;
+        
+        const updatedUser = await userModel.findByIdAndUpdate(req.params.id, { $set: updates }, {new: true});
+
+        if(!updatedUser) return res.status(404).send("Not Found");
+        res.send(updatedUser);
+
+    }
+    catch(err){
+        console.log(err);
+        res.status(500).send("Server error");
     }
 });
 
