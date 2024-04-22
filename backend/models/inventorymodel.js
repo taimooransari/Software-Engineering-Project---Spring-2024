@@ -5,7 +5,7 @@ const inventorySchema = new mongoose.Schema({
     description: { type: String },
     price: { type: Number, required: true },
     imageUrl: { type: String },
-    quantity: { type: Number, required: true },
+    quantity: { type: Number },
     minQuantity: { type: Number, default: 5 } // Optional for stock thresholds 
 });
 

@@ -93,23 +93,23 @@ const OrderModal = ({ isOpen, onClose, order }) => {
                         <h2 className="text-2xl font-semibold mb-4">Order Details</h2>
                         <div className="flex justify-between">
                             <p className="text-left font-bold">Order ID:</p>
-                            <p className="text-right">{order.id}</p>
+                            <p className="text-right">{order._id}</p>
                         </div>
-                        <div className="flex justify-between">
+                        {/* <div className="flex justify-between">
                             <p className="text-left font-bold">Order Time:</p>
                             <p className="text-right">{order.orderTime}</p>
-                        </div>
+                        </div> */}
                         <div className="flex justify-between">
                             <p className="text-left font-bold">Contact:</p>
-                            <p className="text-right">{order.customerContact}</p>
+                            <p className="text-right">{order.phone}</p>
                         </div>
-                        <div className="flex justify-between">
+                        {/* <div className="flex justify-between">
                             <p className="text-left font-bold">Note:</p>
                             <p className="text-right">{order.note}</p>
-                        </div>
+                        </div> */}
                         <div className="flex justify-between">
                             <p className="text-left font-bold">Delivery Address:</p>
-                            <p className="text-right">{order.addressToDeliver.textAddress}</p>
+                            <p className="text-right">{order.address}</p>
                         </div>
                         <div className="flex justify-between">
                             <p className="text-left font-bold">Order Status:</p>
@@ -122,33 +122,33 @@ const OrderModal = ({ isOpen, onClose, order }) => {
                         <div className="flex bg-gray-200 p-2">
                             <p className="flex-1 text-center">Item</p>
                             <p className="flex-1 text-center">Quantity</p>
-                            <p className="flex-1 text-center">Price</p>
-                            <p className="flex-1 text-center">Total</p>
+                            {/* <p className="flex-1 text-center">Price</p>
+                            <p className="flex-1 text-center">Total</p> */}
                         </div>
-                        {Object.keys(order.items).map(itemId => {
-                            const item = items.find(item => item.id === parseInt(itemId));
-                            if (item) {
+                        {(order.orderItems).map(item => {
+                            // const item = items.find(item => item.id === parseInt(itemId));
+                            // if (item) {
                                 return (
-                                    <div key={itemId} className="flex bg-gray-100 p-2">
-                                        <p className="flex-1 text-center">{item.name}</p>
-                                        <p className="flex-1 text-center">{order.items[itemId]}</p>
-                                        <p className="flex-1 text-center">${item.price.toFixed(2)}</p>
-                                        <p className="flex-1 text-center">${(item.price * order.items[itemId]).toFixed(2)}</p>
+                                    <div key={item._id} className="flex bg-gray-100 p-2">
+                                        <p className="flex-1 text-center">{item.itemName}</p>
+                                        <p className="flex-1 text-center">{item.quantity}</p>
+                                        {/* <p className="flex-1 text-center">${item.price.toFixed(2)}</p>
+                                        <p className="flex-1 text-center">${(item.price * item.quantity).toFixed(2)}</p> */}
                                     </div>
                                 );
-                            }
-                            return null;
+                            // }
+                            // return null;
                         })}
                     </div>
 
                     <div className="bg-white w-full shadow-md rounded-lg overflow-hidden mt-4 p-5">
                         <div className="flex bg-gray-200 p-2">
                             <p className="flex-4 text-center mr-5">Delivery Fee :</p>
-                            <p className="flex-4">${order.deliveryFee.toFixed(2)}</p>
+                            <p className="flex-4">$ 15</p>
                         </div>
                         <div className="flex bg-gray-200 p-2">
                             <p className="flex-4 text-center mr-5">Total Amount :</p>
-                            <p className="flex-4">${order.totalBill.toFixed(2)}</p>
+                            <p className="flex-4">${order.total.toFixed(2)}</p>
                         </div>
                     </div>
                 </div>

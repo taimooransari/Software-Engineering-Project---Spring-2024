@@ -24,69 +24,31 @@ const ManageOrders = () => {
     const [orders, setOrders] = useState([]);
     const orderRedux = useSelector(state => state.orders.orders);
 
+    const getOrders = async () => {
+        const response = await fetch("http://localhost:3000/api/orders/getorders", {
+            method: "GET",
+        });
+        
+
+        if (!response.ok) {
+            throw new Error("Failed to get orders");
+        }
+
+        return response.json();
+    };
 
     useEffect(() => {
         setOrders(orderRedux);
     }, [orderRedux]);
 
-    const temp = [
-        {
-            id: 1,
-            orderTime: "2024-04-07T10:30:00",
-            customerContact: "1234567890",
-            note: "Extra spicy",
-            addressToDeliver: {
-                textAddress: "123 Main St, City, Country",
-                mapLink: "https://maps.google.com",
-            },
-            orderStatus: "Open",
-            items: {
-                3: 2,
-                4: 1
-            },
-            deliveryFee: 5,
-            totalBill: 35.98
-        }, {
-            id: 3,
-            orderTime: "2024-04-07T10:30:00",
-            customerContact: "1234567890",
-            note: "Extra spicy",
-            addressToDeliver: {
-                textAddress: "123 Main St, City, Country",
-                mapLink: "https://maps.google.com",
-            },
-            orderStatus: "Cancelled",
-            items: {
-                3: 2,
-                4: 1
-            },
-            deliveryFee: 5,
-            totalBill: 35.98
-        }, {
-            id: 2,
-            orderTime: "2024-04-07T10:30:00",
-            customerContact: "1234567890",
-            note: "Extra spicy",
-            addressToDeliver: {
-                textAddress: "123 Main St, City, Country",
-                mapLink: "https://maps.google.com",
-            },
-            orderStatus: "Fulfilled",
-            items: {
-                3: 2,
-                4: 1
-            },
-            deliveryFee: 5,
-            totalBill: 35.98
-        },
-    ];
-
-
-    const tempFunc = () => {
-
-        dispatch(orderSlice.actions.setOrders(temp));
-        // alert("Items set")
+    useEffect(() => {
+        getOrders().then((data) => {
+            dispatch(orderSlice.actions.setOrders(data));
+        });
     }
+        , []);
+
+    
 
 
     const [statusFilters, setStatusFilters] = useState({
@@ -125,7 +87,7 @@ const ManageOrders = () => {
                         Manage Items
                     </p>
                 </Link>
-                <button onClick={tempFunc} className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition duration-300">Add Item</button>
+                <button  className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition duration-300">Add Item</button>
             </div>
 
             <div className="flex mb-4">
@@ -145,9 +107,9 @@ const ManageOrders = () => {
                 {orders.map((order) => (
                     statusFilters[order.orderStatus] && (
                         <div key={order.id} className="bg-white p-6 rounded-lg shadow-md">
-                            <h3 className="text-xl font-semibold mb-2">Order ID: {order.id}</h3>
-                            <p className="ml-4">Order Time: {order.orderTime}</p>
-                            <p className="ml-4">Address: {order.addressToDeliver.textAddress}</p>
+                            <h3 className="text-xl font-semibold mb-2">Order ID: {order._id}</h3>
+                            {/* <p className="ml-4">Order Time: {order.orderTime}</p> */}
+                            <p className="ml-4">Address: {order.address}</p>
                             <p className="ml-4">Status: {order.orderStatus}</p>
                             <button onClick={() => openOrderDetailsModal(order)} className="bg-blue-500 text-white px-4 py-2 mt-2 rounded-md hover:bg-blue-600 transition duration-300">
                                 View Details

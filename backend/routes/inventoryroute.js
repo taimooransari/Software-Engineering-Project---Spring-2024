@@ -11,7 +11,7 @@ router.post("/addinventory", async (req, res) => {
         const newItem = await inventoryModel.create({
             name: req.body.name,
             price: req.body.price,
-            quantity: req.body.quantity
+            description: req.body.description,
         });
         res.json(newItem);
     } catch (err) {

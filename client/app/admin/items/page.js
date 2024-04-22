@@ -26,31 +26,35 @@ const ManageItems = () => {
 
     const dispatch = useDispatch();
     const itemsRedux = useSelector(state => state.items.items);
-
-
-    const listItems = [
-
-        {
-            id: "4",
-            name: "Spaghetti",
-            description: "Spaghetti with marinara sauce",
-            price: 12.99,
-            imageUrl:
-                "https://s23209.pcdn.co/wp-content/uploads/2014/03/IMG_2626edit.jpg",
-            quantity: 1,
-        },
-        {
-            id: "5",
-            name: "Chicken Alfredo",
-            description: "Fettuccine pasta with creamy Alfredo sauce",
-            price: 18.99,
-            imageUrl: "https://www.allrecipes.com/thmb/9aWCdbfttLcsW2dFQWwVQBGJM3E=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/AR-236973-CreamyAlfredoSauce-0238-4x3-1-01e7091f47ae452d991abe32cbed5921.jpg",
-            quantity: 1,
-
+    
+    const fetchItems = async()=>{
+        const response = await fetch("http://localhost:3000/api/inventory/getinventory", {
+            method: "GET",
+         
+        
+        });
+    
+        if (!response.ok) {
+            throw new Error("Failed to add item");
         }
-    ]
+        return response.json();                           
+    }
 
-
+    // const additemdb = async (item: Item) => {
+    //     const response = await fetch("http://localhost:3000/api/inventory/addinventory", {
+    //         method: "POST",
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //         },
+    //         body: JSON.stringify(item),
+    //     });
+    
+    //     if (!response.ok) {
+    //         throw new Error("Failed to add item");
+    //     }
+    
+    //     return response.json();
+    // }
 
     useEffect(() => {
         updateItems(itemsRedux);
@@ -58,13 +62,14 @@ const ManageItems = () => {
     }, [itemsRedux]);
 
 
-
-    // useEffect(() => {
-    //     dispatch(itemSlice.actions.setItems(listItems));
-    //     // alert("Items set")
-    // }, []);
-
-
+useEffect(()=>{
+    fetchItems().then((data)=>{
+        dispatch(itemSlice.actions.setItems(data));
+        console.log(data);
+    }).catch((err)=>{
+        console.log(err);
+    })
+},[])
 
 
     const openEditModal = (item) => {
