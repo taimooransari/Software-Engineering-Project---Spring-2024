@@ -1,5 +1,6 @@
 /* Instruments */
 import { counterSlice, orderSlice, cartSlice,itemSlice, authSlice } from "./slices";
+import { combineReducers } from "redux";
 // import { cartSlice } from "./slices";
 // import { itemSlice } from "./slices";
 // import { orderSlice } from "./slices";
