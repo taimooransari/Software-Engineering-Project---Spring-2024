@@ -41,12 +41,14 @@ router.get("/getinventory/:id", async (req, res) => {
     }
 });
 
-router.put('/updateinventory/:id', /* Consider Authentication Middleware Here */ async (req, res) => {
+router.put('/updateinventory/:id',async (req, res) => {
     try {
         // 1. Find Item
         let item = await inventoryModel.findById(req.params.id);
         if (!item) {
             return res.status(404).send("Item not found"); 
+        }else{
+            console.log("ITEM FOUND");
         }
 
         // 2. Build Update Object (Only Include Fields Sent in the Request)

@@ -34,7 +34,10 @@ const additemdb = async (item: Item) => {
 }
 
 const updateitemdb = async (item: Item) => {
-    const response = await fetch(`http://localhost:3000/api/inventory/updateinventory?${item._id}`, {
+
+    // console.log(111, item);
+
+    const response = await fetch(`http://localhost:3000/api/inventory/updateinventory/${item._id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
@@ -48,6 +51,31 @@ const updateitemdb = async (item: Item) => {
 
     return response.json();
 }
+
+
+
+
+const deleteitemdb = async (id: string) => {
+
+    // console.log(111, item);
+    // console.log(222, item)
+    const response = await fetch(`http://localhost:3000/api/inventory/deleteinventory/${id}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+        }
+    });
+
+    if (!response.ok) {
+        throw new Error("Failed to delete item");
+    }
+
+    return response.json();
+}
+
+
+
+
 
 export const itemSlice = createSlice({
     name: "items",
@@ -64,7 +92,7 @@ export const itemSlice = createSlice({
         removeItem: (state, action: PayloadAction<{ id: string }>) => {
             const index = state.items.findIndex(item => item._id === action.payload.id);
             if (index !== -1) {
-
+                deleteitemdb(action.payload.id);
                 state.items.splice(index, 1);
             }
         },

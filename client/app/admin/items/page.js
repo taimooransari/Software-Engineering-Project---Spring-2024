@@ -158,7 +158,7 @@ useEffect(()=>{
                         <p className="text-gray-600 mb-4">{item.description}</p>
                         <p className="text-gray-700 font-semibold mb-2">Rs. {item.price}</p>
                         <button onClick={() => openEditModal(item)} className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300">Edit</button>
-                        <button onClick={() => handleRemoveItem(item.id)} className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition duration-300">Remove</button>
+                        <button onClick={() => handleRemoveItem(item._id)} className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition duration-300">Remove</button>
 
                     </div>
                 ))}
