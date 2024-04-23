@@ -1,5 +1,5 @@
 /* Components */
-import About  from "./components/About.tsx";
+import About  from "./components/About";
 
 export default function IndexPage() {
   return <About />;

@@ -8,15 +8,18 @@ import "./styles/globals.css";
 
 export default function RootLayout(props: React.PropsWithChildren) {
   return (
-    <Providers>
+    
       <html lang="en">
         <body>
+        <Providers>
           <div className={styles.layout}>
             <Nav />
             {props.children}
           </div>
+          </Providers>
         </body>
       </html>
-    </Providers>
+    
   );
 }
+
