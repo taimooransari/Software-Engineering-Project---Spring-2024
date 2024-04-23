@@ -87,7 +87,7 @@ const ManageOrders = () => {
                         Manage Items
                     </p>
                 </Link>
-                <button  className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition duration-300">Add Item</button>
+
             </div>
 
             <div className="flex mb-4">

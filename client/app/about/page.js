@@ -1,25 +1,36 @@
 "use client";
 import React from 'react';
 import MapComponent from '../components/map';
+import DeliveryFaq from '../faq/page';
 
 const ContactInfo = () => (
-    
-  <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-start', backgroundColor: '#f7f7f7', marginTop:"100px" }}>
-    <div style={{ width: '40%', padding: '20px', backgroundColor: 'white', marginRight: '10px', marginLeft:'30px' }}>
-      <h2 style={{ color: 'gray', marginBottom: '15px' }}>Address:</h2>
-      <p style={{ marginBottom: '10px' }}>Defence, Khay-e-Nishat, Phase 6</p>
-      <p style={{ marginBottom: '10px' }}>KDA, Scheme 1 (Service Lane Karsaz)</p>
-      <h2 style={{ color: 'orange', marginBottom: '15px' }}>Take Away:</h2>
-      <p style={{ marginBottom: '10px' }}>0327 4746373</p>
-      <h2 style={{ color: 'orange', marginBottom: '15px' }}>Delivery:</h2>
-      <p>0327 4746374</p>
-      <h2 style={{ color: 'gray', marginBottom: '15px', marginTop: '20px' }}>Opening Hours:</h2>
-        <p style={{ marginBottom: '10px' }}>Monday - Sunday: 12:00 PM - 12:00 AM</p>
-      
+  <div className="flex flex-col bg-gray-100 mt-12 " style={{ height: "100vh" }}>
+    <div className="flex flex-row bg-gray-100 mt-12 ">
+      <div className="w-1/2 p-5 bg-white m-4 flex flex-col justify-between">
+        <div>
+          <h2 className="text-gray-500 mb-4">Address:</h2>
+          <p className="mb-2.5">Defence, Khay-e-Nishat, Phase 6</p>
+          <p className="mb-2.5">KDA, Scheme 1 (Service Lane Karsaz)</p>
+        </div>
+        <div>
+          <h2 className="text-orange-500 mb-4">Take Away:</h2>
+          <p className="mb-2.5">0327 4746373</p>
+          <h2 className="text-orange-500 mb-4">Delivery:</h2>
+          <p className="mb-2.5">0327 4746374</p>
+        </div>
+        <div>
+          <h2 className="text-gray-500 mb-4">Opening Hours:</h2>
+          <p>Monday - Sunday: 12:00 PM - 12:00 AM</p>
+        </div>
+      </div>
+      <div className="w-1/2 p-2 flex flex-col justify-between">
+        {/* This is where you'd include your map component, e.g., a Google Maps iframe or a library like react-leaflet */}
+        <DeliveryFaq />
+
+      </div>
     </div>
-    <div style={{ width: '60%', height: '400px', marginRight:"30px" }}>
-      {/* This is where you'd include your map component, e.g., a Google Maps iframe or a library like react-leaflet */}
-        <MapComponent address="1600 Amphitheatre Parkway, Mountain View, CA" />
+    <div>
+      <MapComponent address="1600 Amphitheatre Parkway, Mountain View, CA" />
     </div>
   </div>
 );

@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import { cartSlice } from '@/lib/redux';
 
+import {FaCartArrowDown} from 'react-icons/fa'
+
 function Modal() {
     const [showModal, setShowModal] = useState(false);
     const dispatch = useDispatch();
@@ -28,10 +30,16 @@ function Modal() {
 
     return (
         <>
-            <button type="button" onClick={toggleModal} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">CART</button>
+            <button type="button" onClick={toggleModal} className="text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" >
+
+            {/* <ion-icon name="cart"></ion-icon> */}
+            <FaCartArrowDown size={25}/>
+            </button>
             {showModal && (
                 <dialog
-                    className="fixed left-0 top-0 w-full h-full bg-black bg-opacity-50 z-50 overflow-auto backdrop-blur flex justify-center items-center"
+                    className="fixed top-0 left-1 w-full h-full bg-black bg-opacity-50 z-50 overflow-auto backdrop-blur flex justify-center items-center"
+                
+                
                 >
                     <div className=" m-auto p-8 w-2/4">
                         <div className="flex flex-col items-center">
@@ -117,7 +125,7 @@ function Modal() {
                                     </div>
                                 ))}
                             </div>
-                                    {/* Total */}
+                            {/* Total */}
                             <div className="flex justify-end mt-4  mb-10">
                                 <div className="bg-white w-full shadow-md rounded-lg overflow-hidden">
                                     <div className="flex bg-gray-200 p-2">
@@ -125,12 +133,7 @@ function Modal() {
                                         <p className="flex-4 text-center">${total.toFixed(2)}</p>
                                     </div>
                                 </div>
-                                </div>
-
-
-
-
-
+                            </div>
                         </div>
                     </div>
                 </dialog>

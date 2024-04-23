@@ -14,7 +14,7 @@ const MenuItem = (props) => {
 
   const { name, description, price, imageUrl } = item;
 
-  
+
   const dispatch = useDispatch()
 
   //   const existingItem = useSelector(state => state.items.find(i => i.name === item.name));
@@ -24,7 +24,7 @@ const MenuItem = (props) => {
       name: item.name,
       price: item.price,
       quantity: 1,
-  }));
+    }));
     console.log("Add to cart clicked");
     alert("Item added to cart");
     showalert();

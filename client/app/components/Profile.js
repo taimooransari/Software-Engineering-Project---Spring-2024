@@ -4,11 +4,11 @@ import { authSlice, useDispatch, useSelector } from "@/lib/redux";
 
 const Profile = () => {
   const [isEditing, setIsEditing] = useState(false);
-  const [name, setName] = useState("Taimoor Ansari");
-  const [email, setEmail] = useState("taimoor.ansari432@gmail.com");
-  const [contactNumber, setContactNumber] = useState("033633468547");
+  const [name, setName] = useState("Full Name");
+  const [email, setEmail] = useState("Email Address");
+  const [contactNumber, setContactNumber] = useState("Contact Number");
   const [address, setAddress] = useState(
-    "R13, Block 13, Gulshan-e-Iqbal, Karachi, Pakistan"
+    "Address"
   );
 
   const [pastOrders, setPastOrders] = useState([]);

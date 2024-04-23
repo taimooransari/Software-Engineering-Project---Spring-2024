@@ -7,6 +7,7 @@ import Modal from "./Modal";
 import { authSlice, useDispatch, useSelector } from "@/lib/redux";
 /* Instruments */
 
+import { FaUser} from 'react-icons/fa'
 export const Nav = () => {
   const pathname = usePathname();
 
@@ -20,9 +21,10 @@ export const Nav = () => {
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <a className="flex items-center space-x-3 rtl:space-x-reverse">
             <img
-              src="https://flowbite.com/docs/images/logo.svg"
+              src={"/logo.jpeg"}
               className="h-8"
-              alt="Flowbite Logo"
+              alt="Logo"
+              style={{borderRadius: "100%"}}
             />
             <span className="self-center text-2xl font-semibold whitespace-nowrap text-white">
               BurgerBar
@@ -31,14 +33,7 @@ export const Nav = () => {
           <div className="flex md:order-2 space-x-3 md:space-x-3 rtl:space-x-reverse">
             <Modal />
 
-            <button className="text-white bg-black hover:bg-black focus:ring-4 focus:outline-none focus:ring-black font-medium rounded-lg text-sm px-4 py-2 text-center">
-              <Link
-                className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:p-0 "
-                href="/admin"
-              >
-                ADMIN
-              </Link>
-            </button>
+         
             {isLoggedIn ? (
               <div className="flex md:order-2 space-x-3 md:space-x-3 rtl:space-x-reverse">
                 <button
@@ -62,10 +57,18 @@ export const Nav = () => {
                   className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:p-0 "
                   href="/authenticate"
                 >
-                  Login
+                  <FaUser size={25}/>
                 </Link>
               </button>
             )}
+               <button className="text-white bg-black hover:bg-black focus:ring-4 focus:outline-none focus:ring-black font-medium rounded-lg text-sm px-4 py-2 text-center">
+              <Link
+                className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:p-0 "
+                href="/admin"
+              >
+                Admin
+              </Link>
+            </button>
           </div>
           <div
             className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
@@ -88,14 +91,7 @@ export const Nav = () => {
                   Menu
                 </Link>
               </li>
-              <li>
-                <Link
-                  className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-white md:p-0 md:dark:text-white"
-                  href="/faq"
-                >
-                  FAQs
-                </Link>
-              </li>
+            
               <li>
                 <Link
                   className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-white md:p-0 md:dark:text-white"
@@ -104,14 +100,22 @@ export const Nav = () => {
                   About
                 </Link>
               </li>
-              <li>
+              {/* <li>
+                <Link
+                  className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-white md:p-0 md:dark:text-white"
+                  href="/faq"
+                >
+                  FAQs
+                </Link>
+              </li> */}
+              {/* <li>
                 <Link
                   className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-white md:p-0 md:dark:text-white"
                   href="/authenticate"
                 >
                   Login
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>

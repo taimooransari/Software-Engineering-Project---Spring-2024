@@ -12,11 +12,11 @@ export default function Login() {
   });
 
   const dispatch = useDispatch();
-  const {loggedIn} = useSelector(state => state.auth.isLoggedIn);
+  const { loggedIn } = useSelector(state => state.auth.isLoggedIn);
 
   const host = "http://localhost:3000";
 
-  
+
 
   const register = async () => {
     try {
@@ -95,18 +95,19 @@ export default function Login() {
   return (
     <div className="flex flex-col justify-evenly md:flex-row md:h-screen">
       <div className="flex items-center justify-center w-full md:w-1/2">
+
         {/* <Image src="/burger.jpeg" alt="Login Image" width={800} height={600} /> */}
 
         {/* div with width 800 and height 600 */}
         <div
           style={{
             width: 800,
-            height: 600,
-            borderColor: "black",
-            borderWidth: 1,
-            borderStyle: "solid",
+            height: 600
           }}
-        ></div>
+        >
+
+          <img src="/CoverPhoto.jpeg" alt="Image" width={800} height={600} />
+        </div>
       </div>
 
       <div className="flex flex-col items-center justify-center w-full md:w-1/4">
