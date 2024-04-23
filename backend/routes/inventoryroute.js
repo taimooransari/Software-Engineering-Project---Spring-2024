@@ -12,6 +12,8 @@ router.post("/addinventory", async (req, res) => {
             name: req.body.name,
             price: req.body.price,
             description: req.body.description,
+            imageUrl: req.body.imageUrl,
+            quantity: req.body.quantity,
         });
         res.json(newItem);
     } catch (err) {
@@ -42,6 +44,7 @@ router.get("/getinventory/:id", async (req, res) => {
 });
 
 router.put('/updateinventory/:id',async (req, res) => {
+    console.log(req.params.id);
     try {
         // 1. Find Item
         let item = await inventoryModel.findById(req.params.id);
@@ -56,6 +59,8 @@ router.put('/updateinventory/:id',async (req, res) => {
         if (req.body.name) updateFields.name = req.body.name;
         if (req.body.price) updateFields.price = req.body.price;
         if (req.body.quantity) updateFields.quantity = req.body.quantity;
+        if (req.body.description) updateFields.description = req.body.description;
+        if (req.body.imageUrl) updateFields.imageUrl = req.body.imageUrl;
 
         // 3. Update Document
         if (Object.keys(updateFields).length === 0) { // Check if there's anything to update

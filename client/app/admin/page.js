@@ -6,7 +6,7 @@ import Login from '../components/adminLogin';
 import Dashboard from '../components/Dashboard';
 
 const Home = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleLogin = () => {
     setIsLoggedIn(true);

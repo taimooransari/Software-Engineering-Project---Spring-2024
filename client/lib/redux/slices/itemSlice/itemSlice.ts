@@ -7,6 +7,7 @@ interface Item {
     description: string;
     price: number;
     imageUrl: string;
+    quantity: number;
 }
 
 interface ItemSliceState {

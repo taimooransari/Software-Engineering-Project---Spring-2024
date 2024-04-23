@@ -21,16 +21,16 @@ export const cartSlice = createSlice({
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
     addItem: (state, action: PayloadAction<CartItem>) => {
-        const existingItem = state.items.find(item => item.id === action.payload.id);
+        const existingItem = state.items.find(item => item.name === action.payload.name);
 
         if (existingItem) {
-            existingItem.quantity += action.payload.quantity;
+            existingItem.quantity += 1;
         } else {
             state.items.push(action.payload);
         }
     },
-    removeItem: (state, action: PayloadAction<{ id: string }>) => {
-        const itemIndex = state.items.findIndex(item => item.id === action.payload.id);
+    removeItem: (state, action: PayloadAction<CartItem>) => {
+        const itemIndex = state.items.findIndex(item => item.name === action.payload.name);
         if (itemIndex !== -1) {
             if (state.items[itemIndex].quantity > 1) {
                 state.items[itemIndex].quantity--;

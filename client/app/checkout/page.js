@@ -1,7 +1,8 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Map from "../components/map.js";
+import { loadStripe } from "@stripe/stripe-js";
 
 const CheckoutPage = () => {
   const [formData, setFormData] = useState({
@@ -20,6 +21,27 @@ const CheckoutPage = () => {
 
   const cartItems = useSelector((state) => state.cart.items);
   const { userinfo } = useSelector((state) => state.auth);
+  const [discount, setDiscount] = useState(0);
+  const [deliveryCharges, setDeliveryCharges] = useState(149.0);
+  const [paymentMethod, setPaymentMethod] = useState("COD"); // default to COD
+
+  useEffect(() => {
+    const subtotal = cartItems.reduce(
+      (acc, item) => acc + item.price * item.quantity,
+      0
+    );
+
+    if (subtotal > 1000) {
+      setDeliveryCharges(0);
+    } else {
+      setDeliveryCharges(149.0);
+    }
+
+    if (userinfo.loyaltyPoints > 20) {
+      const discount = subtotal * 0.1; // 10% discount
+      setDiscount(discount);
+    }
+  }, [cartItems, userinfo.loyaltyPoints]);
 
   const [confirmed, setConfirmed] = useState(false);
 
@@ -37,7 +59,45 @@ const CheckoutPage = () => {
 
   const host = "http://localhost:3000";
 
+  const makePayment = async () => {
+    const stripe = await loadStripe(
+      "pk_test_51P8nRUGYLTJbmOKmGMcOvRlaBaz2VvdJ24apNM2OYW6yN0xAcuCp9s1vqYA0xHATj9PrMzI6g3aZtyQ7Ju708aCg00irbOXcj8"
+    );
+
+    const body = {
+      products: cartItems,
+    };
+    const headers = {
+      "Content-Type": "application/json",
+    };
+    const response = await fetch(
+      "http://localhost:3000/api/orders/create-checkout-session",
+      {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify(body),
+      }
+    );
+
+    const session = await response.json();
+
+    const result = stripe.redirectToCheckout({
+      sessionId: session.id,
+    });
+
+    if (result.error) {
+      console.log(result.error);
+    }
+  };
+
   const sendorder = async () => {
+    const subtotal = cartItems.reduce(
+      (acc, item) => acc + item.price * item.quantity,
+      0
+    );
+
+    const total = subtotal - discount + deliveryCharges;
+
     console.log(cartItems);
     try {
       const response = await fetch(`${host}/api/orders/addorder`, {
@@ -51,11 +111,8 @@ const CheckoutPage = () => {
           items: cartItems,
           email: formData.email,
           phone: formData.phone,
-          total: cartItems.reduce(
-            (acc, item) => acc + item.price * item.quantity,
-            0
-          ),
-          orderStatus: "pending",
+          total: total,
+          orderStatus: "Open",
         }),
       });
       const data = await response.json();
@@ -71,7 +128,12 @@ const CheckoutPage = () => {
     event.preventDefault();
     // Implement form submission logic here (potentially using Stripe)
     console.log("Checkout form submitted:", formData);
-    sendorder();
+    if (paymentMethod === "COD") {
+      sendorder();
+    }else{
+      sendorder();
+      makePayment();
+    }
   };
 
   return (
@@ -121,7 +183,11 @@ const CheckoutPage = () => {
               </div>
               <div className="flex justify-between">
                 <span>Shipping</span>
-                <span>PKR 149.00</span>
+                <span>PKR {deliveryCharges}</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Discount</span>
+                <span>PKR {discount.toFixed(2)}</span>
               </div>
               <div className="flex justify-between">
                 <span>Total</span>
@@ -130,6 +196,17 @@ const CheckoutPage = () => {
                   {cartItems
                     .reduce((acc, item) => acc + item.price * item.quantity, 0)
                     .toFixed(2)}
+                </span>
+              </div>
+              <div className="flex justify-between">
+                <span>Net Total</span>
+                <span>
+                  PKR{" "}
+                  {cartItems
+                    .reduce((acc, item) => acc + item.price * item.quantity, 0)
+                    .toFixed(2) +
+                    deliveryCharges -
+                    discount.toFixed(2)}
                 </span>
               </div>
             </div>
@@ -277,7 +354,35 @@ const CheckoutPage = () => {
                         {/* Add more options */}
                       </select>
                     </div>
-                    <div></div>
+                    <div className="mb-4">
+                      <h3 className="text-base font-bold mb-2">
+                        Payment Method
+                      </h3>
+                      <div className="flex items-center">
+                        <input
+                          type="radio"
+                          id="cod"
+                          name="paymentMethod"
+                          value="COD"
+                          checked={paymentMethod === "COD"}
+                          onChange={() => setPaymentMethod("COD")}
+                          className="mr-2"
+                        />
+                        <label htmlFor="cod">Cash on Delivery</label>
+                      </div>
+                      <div className="flex items-center">
+                        <input
+                          type="radio"
+                          id="online"
+                          name="paymentMethod"
+                          value="online"
+                          checked={paymentMethod === "online"}
+                          onChange={() => setPaymentMethod("online")}
+                          className="mr-2"
+                        />
+                        <label htmlFor="online">Online Payment</label>
+                      </div>
+                    </div>
 
                     {/* Shipping Method */}
                     <div>
@@ -331,7 +436,6 @@ const CheckoutPage = () => {
                         required
                       />
                     </div>
-                    <Map address="1600 Amphitheatre Parkway, Mountain View, CA" />
                   </div>
                 </div>
                 <div className="mb-4">
@@ -419,7 +523,11 @@ const CheckoutPage = () => {
                   </div>
                   <div className="flex justify-between">
                     <span>Shipping</span>
-                    <span>PKR 149.00</span>
+                    <span>PKR {deliveryCharges}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>Discount</span>
+                    <span>PKR {discount.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between">
                     <span>Total</span>
@@ -430,7 +538,9 @@ const CheckoutPage = () => {
                           (acc, item) => acc + item.price * item.quantity,
                           0
                         )
-                        .toFixed(2)}
+                        .toFixed(2) +
+                        deliveryCharges -
+                        discount.toFixed(2)}
                     </span>
                   </div>
                 </div>

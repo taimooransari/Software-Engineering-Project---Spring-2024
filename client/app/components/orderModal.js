@@ -59,6 +59,29 @@ const OrderModal = ({ isOpen, onClose, order }) => {
         }
     ]);
 
+    const [orderStatus, setorderStatus] = useState('Open');
+
+    const handleUpdateOrder = async () => {
+        try {
+            const response = await fetch(`http://localhost:3000/api/orders/updateorder/${order._id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    orderStatus,
+                }),
+            });
+            await response.json();
+            alert("Order status updated successfully");
+        } catch (error) {
+            console.error("Failed to update order status", error);
+            alert("Failed to update order status");
+        }
+
+    }
+
+
 
 
     if (!isOpen || !order) return null;
@@ -115,6 +138,20 @@ const OrderModal = ({ isOpen, onClose, order }) => {
                             <p className="text-left font-bold">Order Status:</p>
                             <p className="text-right">{order.orderStatus}</p>
                         </div>
+                        <div className="flex justify-between">
+                            <p>Change Order Status</p>
+                            <select
+                                value={orderStatus}
+                                onChange={(e) => setorderStatus(e.target.value)}
+                                className="border border-gray-300 rounded-md p-1"
+                            >
+                                <option value="Open">Open</option>
+                                <option value="Fulfilled">Fulfilled</option>
+                                <option value="Dispatched">Dispatched</option>
+                                <option value="Cancelled">Cancelled</option>
+                            </select>
+                            <button onClick={handleUpdateOrder} className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition duration-300">Update</button>
+                        </div>
                     </div>
 
                     <div className="bg-white w-full shadow-md rounded-lg overflow-hidden mt-4 p-5">
@@ -130,7 +167,7 @@ const OrderModal = ({ isOpen, onClose, order }) => {
                             // if (item) {
                                 return (
                                     <div key={item._id} className="flex bg-gray-100 p-2">
-                                        <p className="flex-1 text-center">{item.itemName}</p>
+                                        <p className="flex-1 text-center">{item.name}</p>
                                         <p className="flex-1 text-center">{item.quantity}</p>
                                         {/* <p className="flex-1 text-center">${item.price.toFixed(2)}</p>
                                         <p className="flex-1 text-center">${(item.price * item.quantity).toFixed(2)}</p> */}

@@ -11,6 +11,7 @@ interface Userinfo {
     email: string;
     contactNumber: string;
     address: string;
+    loyaltyPoints?: number;
 }
 
 const initialState: AuthState = {
@@ -20,7 +21,8 @@ const initialState: AuthState = {
         name: '',
         email: '',
         contactNumber: '',
-        address: ''
+        address: '',
+        loyaltyPoints: 0
     }
 };
 
@@ -33,6 +35,16 @@ export const authSlice = createSlice({
         },
         logout : (state) => {
             state.isLoggedIn = false;
+            state.userinfo = {
+                id: '',
+                name: '',
+                email: '',
+                contactNumber: '',
+                address: '',
+                loyaltyPoints: 0
+            
+
+            }
         },
         setuser: (state, action: PayloadAction<Userinfo>) => {
             state.userinfo = {...action.payload};

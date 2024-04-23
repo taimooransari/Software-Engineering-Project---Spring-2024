@@ -5,7 +5,8 @@ const ItemModal = ({ isOpen, onClose, mode, itemToUpdate, onSave }) => {
     name: '',
     description: '',
     price: 0,
-    imageUrl: ''
+    imageUrl: '',
+    quantity: 0
   });
 
   useEffect(() => {
@@ -16,7 +17,8 @@ const ItemModal = ({ isOpen, onClose, mode, itemToUpdate, onSave }) => {
         name: '',
         description: '',
         price: 0,
-        imageUrl: ''
+        imageUrl: '',
+        quantity: 0
       });
     }
   }, [isOpen, mode, itemToUpdate]);
@@ -56,6 +58,14 @@ const ItemModal = ({ isOpen, onClose, mode, itemToUpdate, onSave }) => {
             <div className="mb-4">
               <label htmlFor="price" className="block text-gray-700">Price:</label>
               <input type="number" id="price" name="price" value={item.price} onChange={handleChange} className="w-full px-4 py-2 border rounded-md outline-none focus:border-blue-500" />
+            </div>
+            <div className="mb-4">
+              <label htmlFor="imageUrl" className="block text-gray-700">Image URL:</label>
+              <input type="text" id="imageUrl" name="imageUrl" value={item.imageUrl} onChange={handleChange} className="w-full px-4 py-2 border rounded-md outline-none focus:border-blue-500" />
+            </div>
+            <div className="mb-4">
+              <label htmlFor="quantity" className="block text-gray-700">Quantity:</label>
+              <input type="number" id="quantity" name="quantity" value={item.quantity} onChange={handleChange} className="w-full px-4 py-2 border rounded-md outline-none focus:border-blue-500" />
             </div>
             <button type="button" onClick={handleSubmit} className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300">{mode === 'add' ? 'Add' : 'Save'}</button>
           </form>

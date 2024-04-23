@@ -45,6 +45,7 @@ const Profile = () => {
             email: user.email,
             contactNumber: "911",
             address: "Bilawal House, Karachi, Pakistan",
+            loyaltyPoints: user.loyaltyPoints
           })
         );
       } else {
@@ -193,7 +194,7 @@ const Profile = () => {
           </div>
           <div className="flex justify-end">
             <div className="bg-yellow-500 text-white font-bold rounded-full px-4 py-2 shadow-md">
-              {x} Loyalty Points
+              {userinfo.loyaltyPoints} Loyalty Points
             </div>
           </div>
           {isEditing ? (

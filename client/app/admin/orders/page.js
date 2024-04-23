@@ -106,7 +106,7 @@ const ManageOrders = () => {
             <div className="grid grid-cols-1 gap-6">
                 {orders.map((order) => (
                     statusFilters[order.orderStatus] && (
-                        <div key={order.id} className="bg-white p-6 rounded-lg shadow-md">
+                        <div key={order._id} className="bg-white p-6 rounded-lg shadow-md">
                             <h3 className="text-xl font-semibold mb-2">Order ID: {order._id}</h3>
                             {/* <p className="ml-4">Order Time: {order.orderTime}</p> */}
                             <p className="ml-4">Address: {order.address}</p>

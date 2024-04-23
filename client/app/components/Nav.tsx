@@ -91,6 +91,22 @@ export const Nav = () => {
               <li>
                 <Link
                   className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-white md:p-0 md:dark:text-white"
+                  href="/faq"
+                >
+                  FAQs
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-white md:p-0 md:dark:text-white"
+                  href="/about"
+                >
+                  About
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-white md:p-0 md:dark:text-white"
                   href="/authenticate"
                 >
                   Login

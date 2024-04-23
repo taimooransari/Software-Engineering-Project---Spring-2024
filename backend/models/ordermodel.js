@@ -6,12 +6,11 @@ const orderSchema = new mongoose.Schema({
     address: { type: String, required: true },
     phone: { type: String }, 
     orderItems: [{
-        id: { type: String, required: true},
         quantity: { type: Number, required: true },
         name: { type: String, required: true }, // Store name at the time of order
-        quantity: { type: Number, required: true },
+        price: { type: Number, required: true },
     }],
-    orderStatus: { type: String, enum: ['pending', 'confirmed', 'preparing', 'out for delivery', 'delivered', 'cancelled'], default: 'pending' },
+    orderStatus: { type: String, enum: ['Open','Fulfilled','Dispatched','Cancelled'], default: 'Open' },
     total: { type: Number, required: true },
 });
 

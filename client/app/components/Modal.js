@@ -1,10 +1,12 @@
 "use client";
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/navigation';
+import { cartSlice } from '@/lib/redux';
 
 function Modal() {
     const [showModal, setShowModal] = useState(false);
+    const dispatch = useDispatch();
 
     const cartItems = useSelector((state) => state.cart.items);
 
@@ -91,6 +93,7 @@ function Modal() {
                                     <p className="flex-1 text-center">Qty</p>
                                     <p className="flex-1 text-center">Price</p>
                                     <p className="flex-1 text-center">Total</p>
+                                    <p className="flex-1 text-center">Action</p>
                                 </div>
                                 {cartItems.map((item, index) => (
                                     <div key={index} className="flex bg-gray-100 p-2">
@@ -98,6 +101,19 @@ function Modal() {
                                         <p className="flex-1 text-center">{item.quantity}</p>
                                         <p className="flex-1 text-center">${item.price.toFixed(2)}</p>
                                         <p className="flex-1 text-center">${(item.price * item.quantity).toFixed(2)}</p>
+                                        <button
+                                            className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mx-2"
+                                            onClick={() => dispatch(cartSlice.actions.removeItem(item))}
+                                        >
+                                            -
+                                        </button>
+                                        <button
+                                            className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
+                                            onClick={() => dispatch(cartSlice.actions.addItem(item))}
+                                        >
+                                            +
+                                        </button>
+
                                     </div>
                                 ))}
                             </div>
