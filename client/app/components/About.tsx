@@ -5,7 +5,7 @@ const About = () => {
         <div className="flex flex-col items-center justify-center min-h-screen bg-cover bg-center" 
              style={{ backgroundImage: "url('/Logo.jpeg')", opacity:0.9 }}>
             <div className="max-w-2xl px-4 py-8 mx-auto bg-white bg-opacity-85">
-                <h1 className="text-3xl font-bold text-center">Welcome to Burger Bar</h1>
+                <h1 className="text-3xl font-bold text-center">Welcome to The Burger Bar</h1>
                 <p className="mt-4 text-lg text-center">
                     We are a burger restaurant dedicated to serving delicious and mouthwatering burgers to our customers.
                 </p>

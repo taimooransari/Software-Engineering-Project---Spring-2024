@@ -5,9 +5,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Modal from "./Modal";
 import { authSlice, useDispatch, useSelector } from "@/lib/redux";
-/* Instruments */
 
-import { FaUser} from 'react-icons/fa'
+
+
+import { FaUser } from 'react-icons/fa'
 export const Nav = () => {
   const pathname = usePathname();
 
@@ -19,49 +20,51 @@ export const Nav = () => {
     pathname.slice(0, 6) != "/admin" && (
       <div className="bg-gray-900 dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-600 dark:border-gray-600">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-          <a className="flex items-center space-x-3 rtl:space-x-reverse">
+          <Link href={"/"}> <a className="flex items-center space-x-3 rtl:space-x-reverse">
+
             <img
               src={"/logo.jpeg"}
               className="h-8"
               alt="Logo"
-              style={{borderRadius: "100%"}}
+              style={{ borderRadius: "100%" }}
             />
             <span className="self-center text-2xl font-semibold whitespace-nowrap text-white">
-              BurgerBar
+              The BurgerBar
             </span>
-          </a>
+
+          </a></Link>
           <div className="flex md:order-2 space-x-3 md:space-x-3 rtl:space-x-reverse">
             <Modal />
 
-         
+
             {isLoggedIn ? (
-              <div className="flex md:order-2 space-x-3 md:space-x-3 rtl:space-x-reverse">
-                <button
-                  onClick={() => dispatch(authSlice.actions.logout())}
-                  className="text-white bg-black hover:bg-black focus:ring-4 focus:outline-none focus:ring-black font-medium rounded-lg text-sm px-4 py-2 text-center"
-                >
-                  Logout
-                </button>
-                <img
-                  src="https://e7.pngegg.com/pngimages/84/165/png-clipart-united-states-avatar-organization-information-user-avatar-service-computer-wallpaper.png"
-                  className="h-8 w-8 rounded-full"
-                  alt="avatar"
-                />
-                <h2 className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-white md:p-0 md:dark:text-white">
-                  {userinfo.name}
-                </h2>
+              <div className="flex justify-end items-center space-x-3 md:space-x-3">
+                <Link href={"/profile"}>
+                  <div className="flex justify-end items-end md:order-2 space-x-3 md:space-x-3 rtl:space-x-reverse" >
+
+                    <div >
+                      <FaUser size={25} color="white" />
+                    </div>
+                    <div >
+                      <h2 className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-white md:p-0 md:dark:text-white">
+                        {userinfo.name}
+                      </h2>
+                    </div>
+                  </div>
+                </Link>
               </div>
             ) : (
               <button className="text-white bg-black hover:bg-black focus:ring-4 focus:outline-none focus:ring-black font-medium rounded-lg text-sm px-4 py-2 text-center">
                 <Link
                   className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:p-0 "
-                  href="/authenticate"
+                  href="/profile"
                 >
-                  <FaUser size={25}/>
+                  <FaUser size={25} />
                 </Link>
               </button>
             )}
-               <button className="text-white bg-black hover:bg-black focus:ring-4 focus:outline-none focus:ring-black font-medium rounded-lg text-sm px-4 py-2 text-center">
+
+            <button className="text-white bg-yellow-600 hover:bg-black focus:ring-4 focus:outline-none focus:ring-black font-medium rounded-lg text-sm px-4 py-2 text-center">
               <Link
                 className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:p-0 "
                 href="/admin"
@@ -91,7 +94,7 @@ export const Nav = () => {
                   Menu
                 </Link>
               </li>
-            
+
               <li>
                 <Link
                   className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-white md:p-0 md:dark:text-white"
@@ -111,7 +114,7 @@ export const Nav = () => {
               {/* <li>
                 <Link
                   className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-white md:p-0 md:dark:text-white"
-                  href="/authenticate"
+                  href="/profile"
                 >
                   Login
                 </Link>

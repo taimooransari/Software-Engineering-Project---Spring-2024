@@ -161,10 +161,10 @@ const CheckoutPage = () => {
                       <td className="py-2 px-4 text-left">{item.name}</td>
                       <td className="py-2 px-4 text-center">{item.quantity}</td>
                       <td className="py-2 px-4 text-center">
-                        PKR {item.price.toFixed(2)}
+                        Rs. {item.price.toFixed(2)}
                       </td>
                       <td className="py-2 px-4 text-center">
-                        PKR {(item.price * item.quantity).toFixed(2)}
+                        Rs. {(item.price * item.quantity).toFixed(2)}
                       </td>
                     </tr>
                   ))}
@@ -175,7 +175,7 @@ const CheckoutPage = () => {
               <div className="flex justify-between">
                 <span>Subtotal</span>
                 <span>
-                  PKR{" "}
+                  Rs.{" "}
                   {cartItems
                     .reduce((acc, item) => acc + item.price * item.quantity, 0)
                     .toFixed(2)}
@@ -183,16 +183,16 @@ const CheckoutPage = () => {
               </div>
               <div className="flex justify-between">
                 <span>Shipping</span>
-                <span>PKR {deliveryCharges}</span>
+                <span>Rs. {deliveryCharges}</span>
               </div>
               <div className="flex justify-between">
                 <span>Discount</span>
-                <span>PKR {discount.toFixed(2)}</span>
+                <span>Rs. {discount.toFixed(2)}</span>
               </div>
               <div className="flex justify-between">
                 <span>Total</span>
                 <span>
-                  PKR{" "}
+                  Rs.{" "}
                   {cartItems
                     .reduce((acc, item) => acc + item.price * item.quantity, 0)
                     .toFixed(2)}
@@ -201,7 +201,7 @@ const CheckoutPage = () => {
               <div className="flex justify-between">
                 <span>Net Total</span>
                 <span>
-                  PKR{" "}
+                  Rs.{" "}
                   {cartItems
                     .reduce((acc, item) => acc + item.price * item.quantity, 0)
                     .toFixed(2) +
@@ -230,7 +230,7 @@ const CheckoutPage = () => {
           </div>
         </div>
       ) : (
-        <div className="bg-gray-100 p-4">
+        <div className="bg-gray-100 p-4 mb-12">
           <h2 className="text-xl text-center font-bold mb-4 mt-6 pt-10">
             CHECK OUT
           </h2>
@@ -403,7 +403,7 @@ const CheckoutPage = () => {
                           className="mr-2"
                         />
                         <label htmlFor="standardShipping">
-                          Standard (PKR 149.00)
+                          Standard (Rs. 149.00)
                         </label>
                       </div>
                       {/* Add option for other shipping methods */}
@@ -495,10 +495,10 @@ const CheckoutPage = () => {
                             {item.quantity}
                           </td>
                           <td className="py-2 px-4 text-center">
-                            PKR {item.price.toFixed(2)}
+                           {item.price.toFixed(2)}
                           </td>
                           <td className="py-2 px-4 text-center">
-                            PKR {(item.price * item.quantity).toFixed(2)}
+                             {(item.price * item.quantity).toFixed(2)}
                           </td>
                         </tr>
                       ))}
@@ -512,7 +512,7 @@ const CheckoutPage = () => {
                   <div className="flex justify-between">
                     <span>Subtotal</span>
                     <span>
-                      PKR{" "}
+                      {" "}
                       {cartItems
                         .reduce(
                           (acc, item) => acc + item.price * item.quantity,
@@ -523,24 +523,17 @@ const CheckoutPage = () => {
                   </div>
                   <div className="flex justify-between">
                     <span>Shipping</span>
-                    <span>PKR {deliveryCharges}</span>
+                    <span>{deliveryCharges}</span>
                   </div>
                   <div className="flex justify-between">
                     <span>Discount</span>
-                    <span>PKR {discount.toFixed(2)}</span>
+                    <span>{discount.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>Total</span>
+                    <span>Bill</span>
                     <span>
-                      PKR{" "}
-                      {cartItems
-                        .reduce(
-                          (acc, item) => acc + item.price * item.quantity,
-                          0
-                        )
-                        .toFixed(2) +
-                        deliveryCharges -
-                        discount.toFixed(2)}
+                      Rs.{" "}
+                      {(cartItems.reduce((acc, item) => acc + item.price * item.quantity,0)  + deliveryCharges - discount).toFixed(2)}
                     </span>
                   </div>
                 </div>

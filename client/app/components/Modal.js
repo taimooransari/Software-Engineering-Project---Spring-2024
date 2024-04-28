@@ -20,6 +20,7 @@ function Modal() {
 
     const handleCheckout = () => {
         router.push('/checkout');
+        toggleModal();
     };
 
 
@@ -37,8 +38,8 @@ function Modal() {
             </button>
             {showModal && (
                 <dialog
-                    className="fixed top-0 left-1 w-full h-full bg-black bg-opacity-50 z-50 overflow-auto backdrop-blur flex justify-center items-center"
-                
+                    className="fixed top-0 w-full h-full bg-black bg-opacity-50 z-50 overflow-auto backdrop-blur flex justify-center items-center"
+                style={{ margin:'auto'}}
                 
                 >
                     <div className=" m-auto p-8 w-2/4">
@@ -107,8 +108,8 @@ function Modal() {
                                     <div key={index} className="flex bg-gray-100 p-2">
                                         <p className="flex-1 text-center">{item.name}</p>
                                         <p className="flex-1 text-center">{item.quantity}</p>
-                                        <p className="flex-1 text-center">${item.price.toFixed(2)}</p>
-                                        <p className="flex-1 text-center">${(item.price * item.quantity).toFixed(2)}</p>
+                                        <p className="flex-1 text-center">{item.price.toFixed(2)}</p>
+                                        <p className="flex-1 text-center">{(item.price * item.quantity).toFixed(2)}</p>
                                         <button
                                             className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mx-2"
                                             onClick={() => dispatch(cartSlice.actions.removeItem(item))}
@@ -130,7 +131,7 @@ function Modal() {
                                 <div className="bg-white w-full shadow-md rounded-lg overflow-hidden">
                                     <div className="flex bg-gray-200 p-2">
                                         <p className="flex-4 text-center mr-5">Total Amount: </p>
-                                        <p className="flex-4 text-center">${total.toFixed(2)}</p>
+                                        <p className="flex-4 text-center">Rs. {total.toFixed(2)}</p>
                                     </div>
                                 </div>
                             </div>

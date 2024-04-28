@@ -4,7 +4,7 @@ import MapComponent from '../components/map';
 import DeliveryFaq from '../faq/page';
 
 const ContactInfo = () => (
-  <div className="flex flex-col bg-gray-100 mt-12 " style={{ height: "100vh" }}>
+  <div className="flex flex-col bg-gray-100 mt-12" style={{ minHeight: "100vh" }}>
     <div className="flex flex-row bg-gray-100 mt-12 ">
       <div className="w-1/2 p-5 bg-white m-4 flex flex-col justify-between">
         <div>
@@ -23,13 +23,13 @@ const ContactInfo = () => (
           <p>Monday - Sunday: 12:00 PM - 12:00 AM</p>
         </div>
       </div>
-      <div className="w-1/2 p-2 flex flex-col justify-between">
+      <div className="w-1/2 p-5 flex flex-col justify-between">
         {/* This is where you'd include your map component, e.g., a Google Maps iframe or a library like react-leaflet */}
         <DeliveryFaq />
 
       </div>
     </div>
-    <div>
+    <div className="flex flex-col bg-gray-100 mb-16 ">
       <MapComponent address="1600 Amphitheatre Parkway, Mountain View, CA" />
     </div>
   </div>

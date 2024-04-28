@@ -118,10 +118,10 @@ const Profile = () => {
   let x = 50;
 
   return (
-    <div className="flex flex-wrap justify-center items-center m-auto w-3/4 mt-20">
-      <h1 className="text-2xl font-bold mb-4">Welcome Back, {userinfo.name}</h1>
-      <div className="bg-gray-100 flex justify-center items-center m-auto w-3/4 mt-20">
-        <div className="bg-gray-50 shadow-md rounded-lg p-8 w-full">
+    <div className="flex flex-wrap justify-center m-auto w-3/4 mt-10">
+      <h1 className="text-2xl font-bold">Welcome Back, {userinfo.name}</h1>
+      <div className="bg-gray-100 flex justify-center items-center m-auto w-3/4 mt-10">
+        <div className="bg-gray-50 shadow-md rounded-lg p-3 w-full">
           <h1 className="text-2xl font-bold mb-4">Profile</h1>
           <div className="mb-4">
             <label className="block mb-2 font-bold" htmlFor="name">
@@ -192,10 +192,17 @@ const Profile = () => {
               <p>{userinfo.address}</p>
             )}
           </div>
-          <div className="flex justify-end">
+          <div className="flex justify-evenly items-end flex-col">
             <div className="bg-yellow-500 text-white font-bold rounded-full px-4 py-2 shadow-md">
               {userinfo.loyaltyPoints} Loyalty Points
             </div>
+
+            {/* <button
+                  onClick={() => dispatch(authSlice.actions.logout())}
+                  className="text-white bg-black hover:bg-black focus:ring-4 focus:outline-none focus:ring-black font-medium rounded-lg text-sm px-4 py-2 text-center"
+                >
+                  Logout
+                </button> */}
           </div>
           {isEditing ? (
             <button
@@ -222,11 +229,19 @@ const Profile = () => {
             </button>
           )}
           <button
-            className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+            className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-2"
             onClick={getOrders}
             disabled={buttonclicked}
           >
             Get Orders
+          </button>
+
+          <button
+            className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+            onClick={() => dispatch(authSlice.actions.logout())}
+            disabled={buttonclicked}
+          >
+            Logout
           </button>
         </div>
       </div>

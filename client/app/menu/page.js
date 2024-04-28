@@ -44,7 +44,7 @@ const Index = () => {
   return (
     <>
       {isAlert && <div className="fixed bottom-5 right-5 bg-green-500 text-white px-4 py-3 rounded-full shadow-lg hidden opacity-0 transition-opacity duration-300" id="cartAlert">Item added to cart!</div>}
-      <div className="container" style={{ paddingTop: "70px", margin: "auto" }}>
+      <div className="container" style={{ paddingTop: "70px", margin: "auto", paddingBottom: '70px' }}>
         <div className="flex justify-center">
           <div className="w-full">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mine">
